@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BWS Internet Banking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+    body {
+            background-color: #f5f5f5;
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: linear-gradient(to bottom, #0072bc, #005a96);
+            padding: 15px;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .logo-container img {
+            height: 50px;
+        }
+        .datetime {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9em;
+            font-weight: 300;
+        }
+        .language-selector {
+            text-align: right;
+            margin: 15px 20px;
+        }
+        .language-selector img {
+            height: 18px;
+            margin-left: 8px;
+            cursor: pointer;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        .language-selector img:hover {
+            opacity: 1;
+        }
+        .login-container {
+            background: linear-gradient(135deg, #0072bc, #005a96);
+            border-radius: 12px;
+            padding: 15px;
+            max-width: 300px;
+            margin: 50px auto;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        .form-control {
+            margin-top: -15px;
+            margin-bottom: 12px;
+            border: 1px solid #9A9CA9;
+            background-color: white;
+            color: #42445A !important;
+            font-size: 0.9em;
+            padding: 10px 15px;
+            height: auto;
+            transition: all 0.3s ease;
+            border-radius: 100px;
+            border-top-right-radius: 100px;  /* Sudut kanan atas */
+    border-bottom-right-radius: 100px;  /* Sudut kanan bawah */
+        }
+        .form-control:focus {
+            background-color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: none;
+            color: #292A33 !important;
+        }
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus {
+            -webkit-text-fill-color: white;
+            -webkit-box-shadow: 0 0 0px 1000px #0072bc inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+        .captcha {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .login-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100px;
+            padding: 10px;
+            color: white;
+            font-size: 0.95em;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        .forgot-password {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.65em;
+            transition: color 0.3s ease;
+            margin-right: 190px;
+        }
+        .forgot-password:hover {
+            color: white;
+            text-decoration: none;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 12px;
+        }
+        .password-toggle {
+            border-top-right-radius: 15px;  /* Sudut kanan atas */
+            border-bottom-right-radius: 15px;  /* Sudut kanan bawah */
+            position: absolute;
+            right: 15px;
+            top: 40%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+        .password-toggle:hover {
+            color: #555;
+            border-top-right-radius: 15px;  /* Sudut kanan atas */
+    border-bottom-right-radius: 15px;  /* Sudut kanan bawah */
+        }
+        /* ... (style yang sama seperti sebelumnya) ... */
+        .language-selector img {
+            height: 18px;
+            margin-left: 8px;
+            cursor: pointer;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        .language-selector img:hover {
+            opacity: 1;
+        }
+        #login-header {
+          font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 1.66rem;
+          margin-right: 230px;
+          font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <img src="https://i.ibb.co.com/d5wcZVq/logo-Login-1.png" alt="BWS Logo">
+        </div>
+        <div class="datetime" id="datetime"></div>
+    </div>
+
+    <div class="language-selector">
+        <span id="language-label">Bahasa:</span>
+        <img src="https://ib.bankwoorisaudara.com/individual/assets/1.1.2-BWS/ctx/assets/img/flag_id.png" alt="Bahasa Indonesia" onclick="changeLanguage('id')">
+        <img src="https://ib.bankwoorisaudara.com/individual/assets/1.1.2-BWS/ctx/assets/img/flag_ko.png" alt="Korea" onclick="changeLanguage('ko')">
+        <img src="https://ib.bankwoorisaudara.com/individual/assets/1.1.2-BWS/ctx/assets/img/flag_en.png" alt="English" onclick="changeLanguage('en')">
+    </div>
+
+    <div class="login-container">
+        <h2 id="login-header">Login</h2>
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="User name" id="username">
+            </div>
+            <div class="input-group">
+                <input type="password" class="form-control password-input" placeholder="Password" id="password">
+            </div>
+            <div class="captcha">
+                <img src="https://i.ibb.co.com/vQsCmpg/login-kaptchaimage-image-1.jpg" alt="Captcha" style="width: 100%; height: auto;">
+            </div>
+            <input type="text" class="form-control" placeholder="Security Code" id="security-code">
+            <button type="submit" class="login-btn" id="login-btn">LOGIN</button>
+            <a href="#" class="forgot-password" id="forgot-password">Lupa Password</a>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function updateDateTime() {
+            const dateTimeElement = document.getElementById('datetime');
+            const now = new Date();
+
+            // Format hari, bulan, tanggal, tahun (dalam format Indonesia)
+            const dayOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            const formattedDate = now.toLocaleDateString('id-ID', dayOptions); // Format: "Selasa, 10 Desember 2024"
+
+            // Format waktu (jam:menit:detik)
+            const formattedTime = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' }); // Format: "00:08:15"
+
+            // Gabungkan tanggal dan waktu
+            dateTimeElement.textContent = `${formattedDate} - ${formattedTime}`;
+        }
+
+        // Panggil fungsi setiap detik untuk memperbarui waktu
+        setInterval(updateDateTime, 1000);
+
+        // Panggilan awal untuk menghindari delay
+        updateDateTime();
+
+        // Fungsi untuk mengubah bahasa
+        function changeLanguage(lang) {
+            const languageStrings = {
+                'id': {
+                    "login-header": "Masuk",
+                    "username": "Nama Pengguna",
+                    "password": "Kata Sandi",
+                    "security-code": "Kode Keamanan",
+                    "login-btn": "MASUK",
+                    "forgot-password": "Lupa Kata Sandi"
+                },
+                'ko': {
+                    "login-header": "로그인",
+                    "username": "사용자 이름",
+                    "password": "비밀번호",
+                    "security-code": "보안 코드",
+                    "login-btn": "로그인",
+                    "forgot-password": "비밀번호를 잊으셨나요"
+                },
+                'en': {
+                    "login-header": "Login",
+                    "username": "User name",
+                    "password": "Password",
+                    "security-code": "Security Code",
+                    "login-btn": "LOGIN",
+                    "forgot-password": "Forgot Password"
+                }
+            };
+
+            const translations = languageStrings[lang];
+
+            // Update the page text based on selected language
+            document.getElementById("login-header").textContent = translations["login-header"];
+            document.getElementById("username").setAttribute("placeholder", translations["username"]);
+            document.getElementById("password").setAttribute("placeholder", translations["password"]);
+            document.getElementById("security-code").setAttribute("placeholder", translations["security-code"]);
+            document.getElementById("login-btn").textContent = translations["login-btn"];
+            document.getElementById("forgot-password").textContent = translations["forgot-password"];
+        }
+    </script>
+</body>
+</html>
